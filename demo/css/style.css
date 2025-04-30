@@ -1,0 +1,514 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  display: flex;
+  padding-top: 80px;
+  flex-direction: column;
+  background: url('../images/RL.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #f4f6f8;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px; /* to give space for nav */
+}
+
+nav {
+  width: 100%;
+  background-color: #ffffff; /* White background */
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo on left, logout button on right */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for nice effect */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.chat-logo {
+  height: 100px;
+  margin: 8px 8px;
+  object-fit: contain;
+}
+
+/* General elements */
+p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Chat area layout */
+.main-layout {
+  display: flex;
+  justify-content:center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  gap: 40px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* Chat box */
+.chat-container {
+  background:linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow:0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  height: 520px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: fadeInContainer 0.5s ease;
+  gap: 10px;
+}
+
+/* Online users panel */
+.user-container {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  width: 250px;
+  height: 520px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: fadeInContainer 0.5s ease;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 20px;
+  font-size: 14px;
+  background: lab(97.45% 1 0.34 / 0.925);
+  padding: 10px 15px;
+  color: #161515; 
+}
+.user-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.online-dot {
+  height: 10px;
+  width: 10px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* Chat message styles */
+.message {
+  max-width: 70%;
+  padding: 12px 18px;
+  margin: 10px 0;
+  border-radius: 20px;
+  word-wrap: break-word;
+  display: inline-block;
+  clear: both;
+  font-size: 16px;
+  animation: fadeIn 0.3s ease;
+  line-height: 1.4;
+}
+
+.message.left {
+  background-color: #89b9f0;
+  color: #131414;
+  align-self: flex-start;
+  border-radius: 20px 20px 20px 0;
+  border: 1px solid #ddd;
+}
+
+.message.right {
+  background-color: #d1ffd6;
+  color: #1c1d1d;
+  align-self: flex-end;
+  margin-left: auto;
+  border-radius: 20px 20px 0 20px;
+}
+
+/* Send message area */
+#send-container {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 10px 20px;
+  margin: 20px auto 0;
+  border: 1px solid rgba(247, 214, 214, 0.178);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeInContainer 0.5s ease;
+}
+
+#messageInp {
+  flex-grow: 1;
+  padding: 12px 20px;
+  margin-right: 10px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  background: #f9f9f9;
+  transition: border 0.3s ease;
+}
+#messageInp:focus {
+  border-color: #4CAF50;
+}
+
+/* Start button */
+#startBtn {
+  padding: 12px 25px;
+  border: none;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#startBtn:hover {
+  background: linear-gradient(135deg, #45a049, #3e8e41);
+  transform: translateY(-2px);
+}
+
+/* Logout button */
+#logoutBtn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+#logoutBtn:hover {
+  background-color: #e60000;
+}
+
+/* Registration form */
+.register-container {
+  background-color:rgba(255, 255, 255, 0.95); 
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+.register-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+.register-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.register-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.register-container button:hover {
+  background-color: #45a049;
+}
+.register-container p {
+  margin-top: 15px;
+  color: #666;
+}
+.register-container a {
+  color: #007bff;
+}
+
+/* Login form */
+.login-container {
+  background: rgba(25, 78, 148, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow:  0 8px 30px rgba(0, 0, 0, 0.2);
+  gap: 20px;
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.login-container .input-box {
+  width: 100%;
+}
+
+.login-container input {
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  font-size: 16px;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.login-container .remember-forget {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: -10px;
+}
+.remember-forget label input {
+  accent-color: #fff;
+  margin-right: 6px;
+  margin-top: 20px;
+}
+.remember-forget a {
+  color: #fff;
+  text-decoration: none;
+}
+.remember-forget a:hover {
+  text-decoration: underline;
+}
+
+.login-container button {
+  width: 100%;
+  height: 45px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  margin-top: 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-container p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #222121;
+}
+.login-container a {
+  color: #fafbfc;
+  text-decoration: none;
+  margin-top: 40px;
+}
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 30px;
+  border: 1px solid #888;
+  width: 300px;
+  border-radius: 8px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../images/RL.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #f4f6f8;
+  padding: 0 20px; /* for mobile spacing */
+}
+
+#email {
+  background-color: #f9f9f9;
+  border: 1px solid #aaa;
+  color: #333;
+}
+#email:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+
+.chat-container::-webkit-scrollbar,
+.user-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-container::-webkit-scrollbar-thumb,
+.user-container::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover,
+.user-container::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Smooth Hover Transitions */
+button, .user-item, .message {
+  transition: all 0.3s ease;
+}
+
+/* Fade-in Animation for Containers and Messages */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInContainer {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+body.dark-mode .chat-container {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .message {
+  background-color: #444;
+  color: #f5f5f5;
+}
+
+body.dark-mode .left {
+  background-color: #333;
+  border: 1px solid #444;
+}
+
+body.dark-mode .right {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+/* Body background for chat.html */
+body.chat-page {
+  background: url('../images/image2.jpg') no-repeat center center fixed; /* Update with correct path */
+  background-size: cover; /* Ensures the background image covers the whole page */
+  color: #fff; /* White text for contrast against the dark background */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Ensure it covers the full height of the page */
+}

@@ -1,0 +1,20 @@
+{
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "description": "this is node servr for Linkup chat application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pranali",
+  "license": "ISC",
+  
+    "dependencies": {
+  "express": "^4.21.2",
+  "nodemon": "^3.1.9",
+  "socket.io": "^4.8.1"
+
+
+  }
+}
